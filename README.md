@@ -112,3 +112,9 @@ Develop a dashboard that provides an overview of a patient's health records, ena
 - Completeness of frontend and backend features.  
 - Secure and scalable implementation.  
 - Attention to user experience and design.  
+
+
+Reference:
+https://medium.com/@christianinyekaka/building-a-rest-api-with-typescript-express-typeorm-authentication-authorization-and-postgres-e87d07d1af08
+
+https://github.com/chrisBokotaII/typeOrm-api
