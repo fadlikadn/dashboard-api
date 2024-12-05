@@ -1,5 +1,8 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Diagnose } from "./Diagnose";
+import { Medication } from "./Medication";
+import { Appoinment } from "./Appointment";
+import { Allergy } from "./Allergy";
 
 @Entity({ name: "patients" })
 export class Patient {
@@ -23,6 +26,15 @@ export class Patient {
 
   @OneToMany(() => Diagnose, (diagnose) => diagnose.patient)
   diagnoses: Diagnose[];
+
+  @OneToMany(() => Medication, (medication) => medication.patient)
+  medications: Medication[];
+
+  @OneToMany(() => Appoinment, (appointment) => appointment.patient)
+  appointments: Appoinment[];
+
+  @OneToMany(() => Allergy, (allergy) => allergy.patient)
+  allergies: Allergy[];
 
   @CreateDateColumn()
   createdAt: Date;

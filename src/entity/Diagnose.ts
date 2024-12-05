@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Patient } from "./Patient";
 
 @Entity({ name: "diagnoses" })
@@ -15,4 +15,10 @@ export class Diagnose {
   @ManyToOne(() => Patient, (patient) => patient.diagnoses)
   @JoinColumn({ name: "patient_id" })
   patient: Patient
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
