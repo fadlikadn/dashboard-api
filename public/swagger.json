@@ -54,7 +54,7 @@
 					},
 					"appointments": {
 						"items": {
-							"$ref": "#/components/schemas/Appoinment"
+							"$ref": "#/components/schemas/Appointment"
 						},
 						"type": "array"
 					},
@@ -163,7 +163,7 @@
 				"type": "object",
 				"additionalProperties": true
 			},
-			"Appoinment": {
+			"Appointment": {
 				"properties": {
 					"id": {
 						"type": "string"
@@ -417,7 +417,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/Appoinment"
+										"$ref": "#/components/schemas/Appointment"
 									},
 									"type": "array",
 									"nullable": true

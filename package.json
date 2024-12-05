@@ -36,7 +36,8 @@
       "prebuild": "npm run swagger",
       "build": "tsc",
       "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec \"",
-      "swagger": "tsoa spec"
+      "swagger": "tsoa spec",
+      "data:seed": "ts-node src/dto/seed.ts"
    },
    "nodemonConfig": {
       "watch": [

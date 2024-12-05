@@ -4,7 +4,7 @@ import { Patient } from "../entity/Patient";
 import { Diagnose } from "../entity/Diagnose";
 import { Medication } from "../entity/Medication";
 import { Allergy } from "../entity/Allergy";
-import { Appoinment } from "../entity/Appointment";
+import { Appointment } from "../entity/Appointment";
 
 interface PingResponse {
   message: string
@@ -56,8 +56,8 @@ export class PatientController {
   }
 
   @Get("/:id/appointments")
-  public async getPatientAppointments(id: string): Promise<Appoinment[] | null> {
-    const appointments = await AppDataSource.getRepository(Appoinment).findBy({ patient: {
+  public async getPatientAppointments(id: string): Promise<Appointment[] | null> {
+    const appointments = await AppDataSource.getRepository(Appointment).findBy({ patient: {
       id
     }})
     return appointments

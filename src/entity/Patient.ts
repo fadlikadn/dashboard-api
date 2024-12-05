@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Diagnose } from "./Diagnose";
 import { Medication } from "./Medication";
-import { Appoinment } from "./Appointment";
+import { Appointment } from "./Appointment";
 import { Allergy } from "./Allergy";
 
 @Entity({ name: "patients" })
@@ -30,8 +30,8 @@ export class Patient {
   @OneToMany(() => Medication, (medication) => medication.patient)
   medications: Medication[];
 
-  @OneToMany(() => Appoinment, (appointment) => appointment.patient)
-  appointments: Appoinment[];
+  @OneToMany(() => Appointment, (appointment) => appointment.patient)
+  appointments: Appointment[];
 
   @OneToMany(() => Allergy, (allergy) => allergy.patient)
   allergies: Allergy[];
