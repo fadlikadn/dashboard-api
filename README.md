@@ -122,3 +122,4 @@ https://github.com/chrisBokotaII/CarCollection
 
 
 https://rsbh.dev/blogs/rest-api-with-express-typescript
+https://github.com/rsbh/express-typescript

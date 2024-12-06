@@ -5,13 +5,15 @@ import * as dotenv from "dotenv"
 import "reflect-metadata"
 import patientRouter from "./routes/PatientRoutes"
 import morgan = require("morgan")
-// import swaggerUi from "swagger-ui-express"
 
 const swaggerUi = require("swagger-ui-express")
+const cors = require("cors")
 
 dotenv.config()
 const app: Application = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
+
+app.use(cors())
 
 app.use(express.json())
 app.use(morgan("tiny"))
