@@ -171,7 +171,13 @@
 					"date": {
 						"type": "string"
 					},
-					"room": {
+					"time": {
+						"type": "string"
+					},
+					"doctor": {
+						"type": "string"
+					},
+					"department": {
 						"type": "string"
 					},
 					"patient": {
@@ -189,7 +195,9 @@
 				"required": [
 					"id",
 					"date",
-					"room",
+					"time",
+					"doctor",
+					"department",
 					"patient",
 					"createdAt",
 					"updatedAt"

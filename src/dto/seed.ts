@@ -53,8 +53,20 @@ async function seed() {
     await allergyRepository.save(allergies);
 
     const appointments: Appointment[] = [
-        { id: uuidv4(), date: new Date('2024-12-10').toDateString(), room: 'Room 1', createdAt: new Date(), updatedAt: new Date(), patient },
-        { id: uuidv4(), date: new Date('2024-12-15').toDateString(), room: 'Room 2', createdAt: new Date(), updatedAt: new Date(), patient },
+        { 
+            id: uuidv4(), 
+            date: new Date('2024-12-10').toDateString(), 
+            time: new Date('2024-12-10 08:00:00').toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+            doctor: 'Dr. Smith',
+            department: 'Cardiology', createdAt: new Date(), updatedAt: new Date(), patient },
+        { 
+            id: uuidv4(), 
+            date: new Date('2024-12-15').toDateString(), 
+            time: new Date('2024-12-15 10:00:00').toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+            doctor: 'Dr. Johnson',
+            department: 'Endocrinology', 
+            createdAt: new Date(), 
+            updatedAt: new Date(), patient },
     ];
 
     await appointmentRepository.save(appointments);

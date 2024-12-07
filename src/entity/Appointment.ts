@@ -9,8 +9,14 @@ export class Appointment {
   @Column({ nullable: false })
   date: string;
 
+  @Column({ nullable: false})
+  time: string;
+
   @Column({ nullable: false })
-  room: string;
+  doctor: string;
+
+  @Column({ nullable: false })
+  department: string;
 
   @ManyToOne(() => Patient, (patient) => patient.appointments)
   @JoinColumn({ name: "patient_id" })
