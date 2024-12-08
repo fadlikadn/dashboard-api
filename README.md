@@ -60,7 +60,7 @@ The database schema is defined using TypeORM entities. You can find the schema i
 - Allergy
 - Appointment
 
-## Scipts
+## Scripts
 - `npm run dev`: Start the server in development mode
 
 ## Environment Variables
