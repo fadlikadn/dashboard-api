@@ -1,11 +1,15 @@
 import { IsEmail, IsNotEmpty, MinLength } from "class-validator"
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from "typeorm"
+import { Role } from "./Role"
 
 @Entity({ name: "users" })
 export class User {
 
     @PrimaryGeneratedColumn("uuid")
     id: string
+
+    @Column({ unique: true, nullable: false })
+    username: string
 
     @Column({ nullable: false })
     @IsNotEmpty()
@@ -19,8 +23,9 @@ export class User {
     @MinLength(6)
     password: string
 
-    @Column({ nullable: false })
-    role: string
+    @ManyToMany(() => Role)
+    @JoinTable()
+    roles: Role[]
 
     @CreateDateColumn()
     createdAt: Date

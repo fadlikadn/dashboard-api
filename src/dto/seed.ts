@@ -5,6 +5,9 @@ import { Diagnose } from '../entity/Diagnose';
 import { Medication } from '../entity/Medication';
 import { Allergy } from '../entity/Allergy';
 import { Appointment } from '../entity/Appointment';
+import { Role } from '../entity/Role';
+import { User } from '../entity/User';
+import * as bcrypt from "bcrypt"
 
 async function seed() {
     await AppDataSource.initialize();
@@ -14,9 +17,31 @@ async function seed() {
     const medicationRepository = AppDataSource.getRepository(Medication);
     const allergyRepository = AppDataSource.getRepository(Allergy);
     const appointmentRepository = AppDataSource.getRepository(Appointment);
+    const roleRepository = AppDataSource.getRepository(Role);
+    const userRepository = AppDataSource.getRepository(User);
+
+    const patientRole = roleRepository.create({ name: 'PATIENT' });
+    const doctorRole = roleRepository.create({ name: 'DOCTOR' });
+    await roleRepository.save([patientRole, doctorRole]);
+
+    const genericPassword = await bcrypt.hash('password123', 10);
+    const patientUser = userRepository.create({
+        username: 'patient',
+        name: 'John Doe',
+        email: 'fadlikadn@gmail.com',
+        password: genericPassword,
+        roles: [patientRole]
+    })
+    const doctorUser = userRepository.create({
+        username: 'doctor',
+        name: 'Dr. Smith',
+        email: 'smith@gmail.com',
+        password: genericPassword,
+        roles: [doctorRole]
+    })
+    await userRepository.save([patientUser, doctorUser]);
 
     const patientId = uuidv4();
-
     const patient = patientRepository.create({
         id: patientId,
         name: 'Fadli',
@@ -70,7 +95,6 @@ async function seed() {
     ];
 
     await appointmentRepository.save(appointments);
-
     console.log('Seeding completed!');
     process.exit(0);
 }

@@ -6,19 +6,8 @@ import { Medication } from "../entity/Medication";
 import { Allergy } from "../entity/Allergy";
 import { Appointment } from "../entity/Appointment";
 
-interface PingResponse {
-  message: string
-}
-
 @Route("patients")
 export class PatientController {
-  @Get("/ping")
-  public async getMessage(): Promise<PingResponse> {
-    return {
-      message: "pong",
-    }
-  }
-
   @Get("/")
   public async getPatiens(): Promise<Patient[]> {
     const patients = await AppDataSource.getRepository(Patient).find()

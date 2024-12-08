@@ -126,4 +126,17 @@ https://github.com/rsbh/express-typescript
 
 TODO:
 add role based authentication
-websocket
+websocket done
+add documentation how to run the project (including database)
+add docker yaml to easily run the project
+
+```
+curl -X POST http://localhost:3001/register -H "Content-Type: application/json" -d '{"username":"newuser","name":"USER", "email":"user@gmail", "password":"password123","role":"USER"}'
+
+curl -X POST http://localhost:3001/register -H "Content-Type: application/json" -d '{"username":"admin","name":"ADMIN", "email":"admin@gmail", "password":"password123","role":"DOCTOR"}'
+
+curl -X POST http://localhost:3001/login -H "Content-Type: application/json" -d '{"username":"doctor", "password":"password123"}'
+curl -X POST http://localhost:3001/login -H "Content-Type: application/json" -d '{"username":"patient", "password":"password123"}'
+
+curl -X GET http://localhost:3001/profile -H "Authorization: Bearer <replace_token_here>"
+```
