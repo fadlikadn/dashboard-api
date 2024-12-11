@@ -4,12 +4,12 @@ import { Request, Response, Application } from "express"
 import * as dotenv from "dotenv"
 import "reflect-metadata"
 import patientRouter from "./routes/PatientRoutes"
-import morgan = require("morgan")
 import WebSocket from "ws"
 import { AuthService } from "./services/AuthService"
 import { authMiddleware } from "./middlewares/auth.middleware"
 import { checkPermission } from "./middlewares/rbac.middleware"
 
+const morgan = require("morgan")
 const swaggerUi = require("swagger-ui-express")
 const cors = require("cors")
 const http = require("http")

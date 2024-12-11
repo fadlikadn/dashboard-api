@@ -4,16 +4,24 @@
          "es5",
          "es6"
       ],
-      "target": "es5",
-      "module": "commonjs",
+      "target": "ESNext",
+      "module": "CommonJS",
       "moduleResolution": "node",
+      "allowSyntheticDefaultImports": true,
       "outDir": "./build",
+      "rootDir": "./src",
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "esModuleInterop": true,
-      "sourceMap": true
+      "sourceMap": true,
+      "strict": false,
+      "skipLibCheck": true
    },
+   "include": [
+      "src/**/*"
+   ],
    "exclude": [
-      "node_modules"
+      "node_modules",
+      "build"
    ]
 }
