@@ -222,6 +222,36 @@
 				],
 				"type": "object",
 				"additionalProperties": true
+			},
+			"PatientResponse": {
+				"properties": {
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/Patient"
+						},
+						"type": "array"
+					},
+					"total": {
+						"type": "number",
+						"format": "double"
+					},
+					"page": {
+						"type": "number",
+						"format": "double"
+					},
+					"lastPage": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"data",
+					"total",
+					"page",
+					"lastPage"
+				],
+				"type": "object",
+				"additionalProperties": true
 			}
 		},
 		"securitySchemes": {}
@@ -253,6 +283,46 @@
 				},
 				"security": [],
 				"parameters": []
+			}
+		},
+		"/patients/pagination": {
+			"get": {
+				"operationId": "GetPatiensPagination",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PatientResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"default": 1,
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"default": 10,
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
 			}
 		},
 		"/patients/{id}": {

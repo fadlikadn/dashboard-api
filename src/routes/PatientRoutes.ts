@@ -12,6 +12,14 @@ patientRouter.get("/", authMiddleware, checkPermission(["DOCTOR"]), async (req: 
   res.json(response)
 })
 
+patientRouter.get("/pagination", authMiddleware, checkPermission(["DOCTOR"]), async (req: Request, res: Response) => {
+  const page = parseInt(req.query.page as string) || 1
+  const pageSize = parseInt(req.query.pageSize as string) || 10
+  const response = await patientController.getPatiensPagination(page, pageSize)
+  console.log(response)
+  res.json(response)
+})
+
 patientRouter.get("/:id", authMiddleware, checkPermission(["DOCTOR"]), async (req: Request, res: Response) => {
   const response = await patientController.getPatient(req.params.id)
   console.log(response)

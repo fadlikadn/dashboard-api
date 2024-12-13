@@ -1,4 +1,4 @@
-import { Get, Route } from "tsoa";
+import { Get, Query, Route } from "tsoa";
 import { AppDataSource } from "../data-source";
 import { Patient } from "../entity/Patient";
 import { Diagnose } from "../entity/Diagnose";
@@ -6,12 +6,38 @@ import { Medication } from "../entity/Medication";
 import { Allergy } from "../entity/Allergy";
 import { Appointment } from "../entity/Appointment";
 
+interface PatientResponse {
+  data: Patient[]
+  total: number
+  page: number
+  lastPage: number
+}
+
 @Route("patients")
 export class PatientController {
   @Get("/")
   public async getPatiens(): Promise<Patient[]> {
     const patients = await AppDataSource.getRepository(Patient).find()
     return patients
+  }
+
+  @Get("/pagination")
+  public async getPatiensPagination(
+    @Query() page: number = 1,
+    @Query() pageSize: number = 10
+  ): Promise<PatientResponse> {
+    const patientRepository = AppDataSource.getRepository(Patient)
+    const [patients, total] = await patientRepository.findAndCount({
+      skip: (page - 1) * pageSize,
+      take: pageSize,
+    })
+
+    return {
+      data: patients,
+      total,
+      page,
+      lastPage: Math.ceil(total / pageSize),
+    }
   }
 
   @Get("/:id")
