@@ -50,4 +50,10 @@ patientRouter.get("/:id/appointments", authMiddleware, checkPermission(["DOCTOR"
   res.json(response)
 })
 
+patientRouter.post("/medications", authMiddleware, checkPermission(["DOCTOR"]), async (req: Request, res: Response) => {
+  const response = await patientController.createMedication(req.body)
+  console.log(response)
+  res.json(response)
+})
+
 export default patientRouter

@@ -1,4 +1,4 @@
-import { Get, Query, Route } from "tsoa";
+import { Body, Get, Post, Query, Route } from "tsoa";
 import { AppDataSource } from "../data-source";
 import { Patient } from "../entity/Patient";
 import { Diagnose } from "../entity/Diagnose";
@@ -76,5 +76,19 @@ export class PatientController {
       id
     }})
     return appointments
+  }
+
+  @Post("/medications")
+  public async createMedication(
+    @Body() medicationData: { name: string; dosage: string; frequency: string, patientId: string }
+  ): Promise<Medication> {
+    const medication = new Medication();
+    medication.name = medicationData.name;
+    medication.dosage = medicationData.dosage;
+    medication.frequency = medicationData.frequency;
+    medication.patient = await AppDataSource.getRepository(Patient).findOneBy({ id: medicationData.patientId });
+
+    const savedMedication = await AppDataSource.getRepository(Medication).save(medication);
+    return savedMedication;
   }
 }
